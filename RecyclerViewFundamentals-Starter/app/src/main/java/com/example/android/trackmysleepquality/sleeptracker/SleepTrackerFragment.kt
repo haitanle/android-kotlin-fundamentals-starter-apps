@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,9 @@ class SleepTrackerFragment : Fragment() {
         binding.listSleep.adapter = adapter
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
-            it?.let { adapter.logs = it }
+            it?.let {
+                adapter.logs = it
+            }
         })
 
         // To use the View Model with data binding, you have to explicitly
